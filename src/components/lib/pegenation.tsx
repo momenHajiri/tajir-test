@@ -16,7 +16,6 @@ export default function Pagination({
 
   return (
     <div className="flex justify-center mt-10 gap-2 flex-wrap">
-      {/* Previous */}
       <a
         href={`${basePath}?page=${Math.max(1, currentPage - 1)}`}
         className={`px-4 py-2 rounded-xl font-bold transition-all duration-300 shadow-sm border text-sm sm:text-base ${
@@ -42,7 +41,6 @@ export default function Pagination({
         </a>
       ))}
 
-      {/* Next */}
       <a
         href={`${basePath}?page=${Math.min(totalPages, currentPage + 1)}`}
         className={`px-4 py-2 rounded-xl font-bold transition-all duration-300 shadow-sm border text-sm sm:text-base ${

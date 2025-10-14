@@ -29,7 +29,6 @@ function Checkout() {
             الطلب
           </h1>
         </div>
-        {/* منتج */}
         <div className="flex flex-col sm:flex-row items-center gap-6 border-b border-gray-200 pb-6 mb-8">
           <img
             src={product.thumbnail}
@@ -49,7 +48,6 @@ function Checkout() {
           </div>
         </div>
 
-        {/* الفورم */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="grid sm:grid-cols-2 gap-5">
             <input

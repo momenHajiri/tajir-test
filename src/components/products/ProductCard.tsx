@@ -7,16 +7,14 @@ import Link from "next/link";
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <div className="bg-white border border-blue-100 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col">
-      {/* صورة المنتج */}
       <div className="relative w-full h-48 bg-gray-50 flex items-center justify-center">
         <img
-          src={product.thumbnail || "/placeholder.png"}
+          src={product.thumbnail}
           alt={product.title}
           className="w-full h-full object-contain p-4 transition-transform duration-300 hover:scale-105"
         />
       </div>
 
-      {/* معلومات المنتج */}
       <div className="flex flex-col flex-1 p-5">
         <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-1">
           {product.title}

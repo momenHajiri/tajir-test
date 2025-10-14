@@ -14,6 +14,9 @@ export default function CategoriesSlider({
   const params = useSearchParams();
   const selectedCategory = params.get("category") || "";
 
+  // for color bg of all cat item
+  const isAll = selectedCategory ? false : true;
+
   return (
     <div
       className="flex overflow-x-auto no-scrollbar
@@ -21,7 +24,9 @@ export default function CategoriesSlider({
     >
       <Link
         href={`/store`}
-        className={`flex-shrink-0 px-4 py-2 bg-white hover:bg-gray-100 border-gray-300 rounded-full border cursor-pointer whitespace-nowrap
+        className={` ${
+          isAll ? "bg-blue-600 text-white border-blue-600" : "hover:bg-gray-100"
+        } flex-shrink-0 px-4 py-2 border-gray-300 rounded-full border cursor-pointer whitespace-nowrap
            `}
       >
         All
