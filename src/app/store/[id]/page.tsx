@@ -11,10 +11,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const product = await fetchProductById(params.id);
 
   return (
-    <div className="pt-10 pr-10">
+    <div className="pt-10 ">
       <Link
         href="/store"
-        className="font-bold bg-gradient-to-r from-blue-600 to-green-500 text-white text-sm px-4 py-2 rounded-xl shadow-md hover:shadow-lg hover:from-blue-700 hover:to-green-600 transition-all duration-300"
+        className="mr-5 font-bold bg-gradient-to-r from-blue-600 to-green-500 text-white text-sm px-4 py-2 rounded-xl shadow-md hover:shadow-lg hover:from-blue-700 hover:to-green-600 transition-all duration-300"
       >
         {"<"}
       </Link>
@@ -40,7 +40,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 ${product.price.toFixed(2)}
               </p>
             </div>
-
             <CheckoutForm product={product} />
           </div>
         </div>
