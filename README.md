@@ -28,6 +28,13 @@
 
 ---
 
+## تجربة المشروع أونلاين
+
+تم رفع المشروع على **Vercel**  
+[https://tajir-test.vercel.app/store](https://tajir-test.vercel.app/store)
+
+---
+
 ## معلومات اضافية عن المشروع
 
 ### بعض النقاط التي حاولت التركيز عليها
@@ -86,8 +93,3 @@
 | **`components/products/ProductCard.tsx`** | Client Component | عرض بيانات المنتج وتوفير رابط تفاصيل المنتج الديناميكي.                              |
 
 ---
-
-## تجربة المشروع أونلاين
-
-تم رفع المشروع على **Vercel**  
-[https://tajir-test.vercel.app/store](https://tajir-test.vercel.app/store)
