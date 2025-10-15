@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   plugins: {
     "@tailwindcss/postcss": {},
   },
-  /* config options here */
   async redirects() {
     return [
       {
