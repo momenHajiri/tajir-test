@@ -21,26 +21,76 @@ export default function CheckoutForm({ product }: CheckoutFormProps) {
     router.push("/checkout");
   };
 
+  const increase = () => setQty((prev) => prev + 1);
+  const decrease = () => setQty((prev) => (prev > 1 ? prev - 1 : 1));
+
   return (
     <form
       onSubmit={handleCheckout}
-      className="flex flex-col gap-4 mt-6 max-w-xs w-full"
+      className="
+        flex flex-col gap-4 mt-6 max-w-xs w-full
+        sm:mx-0 sm:text-left
+        mx-auto text-center
+      "
     >
-      <label className="flex flex-col text-sm font-medium text-gray-700">
+      <label
+        className="
+          flex flex-col text-sm font-medium text-gray-700
+        "
+      >
         الكمية
-        <input
-          type="number"
-          min={1}
-          value={qty}
-          onChange={(e) => setQty(Number(e.target.value))}
-          className="border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none transition"
-          required
-        />
+        <div
+          className="
+            flex items-center justify-between 
+            border border-gray-300 rounded-lg mt-1 overflow-hidden
+            focus-within:ring-2 focus-within:ring-blue-400 transition
+          "
+        >
+          <button
+            type="button"
+            onClick={decrease}
+            className="
+              w-10 h-10 flex items-center justify-center 
+              text-lg font-bold text-gray-600 hover:bg-gray-100
+              transition
+            "
+          >
+            −
+          </button>
+
+          <input
+            type="number"
+            min={1}
+            value={qty}
+            onChange={(e) => setQty(Math.max(1, Number(e.target.value)))}
+            className="
+              w-full text-center outline-none appearance-none
+              text-gray-800 font-medium
+            "
+            required
+          />
+
+          <button
+            type="button"
+            onClick={increase}
+            className="
+              w-10 h-10 flex items-center justify-center 
+              text-lg font-bold text-gray-600 hover:bg-gray-100
+              transition
+            "
+          >
+            +
+          </button>
+        </div>
       </label>
 
       <button
         type="submit"
-        className="bg-gradient-to-r from-green-600 to-green-500 text-white py-2.5 rounded-lg font-medium shadow hover:from-green-700 hover:to-green-600 transition-all duration-300"
+        className="
+          bg-gradient-to-r from-green-600 to-green-500 text-white py-2.5 rounded-lg font-medium shadow
+          hover:from-green-700 hover:to-green-600 transition-all duration-300
+          w-full sm:self-start
+        "
       >
         Checkout
       </button>
