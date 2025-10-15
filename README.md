@@ -2,12 +2,33 @@
 
 ### التقنيات المستخدمة
 
-**Next.js 15+ (latest)**
-**Type Script**
-**Conext API**
-**Tailwind**
+**Next.js 15+ (latest),**
+**Type Script,**
+**Conext API,**
+**Tailwind.**
 
 ---
+
+### 🔧 كيفية تشغيل المشروع محلياً
+
+1.  **استنساخ المستودع (Clone the repository):**
+    ```bash
+    git clone git@github.com:momenHajiri/tajir-test.git
+    ```
+2.  **تثبيت التبعيات (Install dependencies):**
+    ```bash
+    npm install
+    ```
+3.  **تشغيل سيرفر التطوير (Run the development server):**
+    ```bash
+    npm run dev
+    ```
+4.  **الوصول إلى التطبيق:**
+    افتح متصفحك واذهب إلى: `http://localhost:3000`.
+
+---
+
+## معلومات اضافية عن المشروع
 
 ### بعض النقاط التي حاولت التركيز عليها
 
