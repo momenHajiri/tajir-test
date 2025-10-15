@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ مشروع متجر إلكتروني مصغر (TAJIR-TEST)
 
-## Getting Started
+هذا المشروع هو تطبيق متجر إلكتروني صغير تم تطويره باستخدام أحدث التقنيات **Next.js 15+ (latest)**، مع الالتزام التام بنظام **TypeScript** لضمان موثوقية الكود وقابلية الصيانة.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌟 نقاط القوة الرئيسية في التنفيذ المعماري
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+لقد تم بناء المشروع مع التركيز على **الأداء**، **تجربة المستخدم (UX)**، و**استمرارية الحالة**:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **الأداء المرتفع بـ Server Components (SSR):**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   - تم استخدام **مكونات الخادم (Server Components)** في ملفات التوجيه الرئيسية (`page.tsx`) لجلب البيانات مباشرةً على الخادم.
+   - هذا يضمن **أسرع وقت لظهور المحتوى (TTFB)** وتحسين محركات البحث (**SEO**).
 
-## Learn More
+2. **إدارة حالة مستمرة ومرنة (Persistent State Management):**
 
-To learn more about Next.js, take a look at the following resources:
+   - تم تطبيق **React Context API** في `CheckoutContext.tsx` لإدارة حالة الدفع (المنتج، الكمية، معلومات المستخدم).
+   - تم دمج هذه الحالة مع **`localStorage`** لضمان **استمرارية بيانات الدفع**، بحيث لا يفقد المستخدم تقدمه حتى بعد تحديث الصفحة أو إغلاق المتصفح.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **التحكم الكامل في حالة الرابط (Full URL State Control):**
+   - يتم استخدام معامل البحث (Query Parameters) في الرابط لتخزين حالة التصفية (الفئة) والترقيم (رقم الصفحة).
+   - مكونات مثل `CategoriesSlider.tsx` و `Pagination.tsx` تُحدّث هذه المعاملات مباشرةً، مما يسمح بـ **مشاركة روابط الصفحات المُفلتَرة**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📁 هيكل المشروع والبنية المعمارية (Project Structure)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+يتبع المشروع بنية Next.js App Router، مع فصل واضح للمسؤوليات بين المجلدات:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| المجلد/الملف                    | الغرض الأساسي            | التقنية والتفاصيل                                                                     |
+| :------------------------------ | :----------------------- | :------------------------------------------------------------------------------------ |
+| **`app`**                       | **التوجيه (Routing)**    | يحتوي على جميع الصفحات والمسارات (`page.tsx`) والتصاميم المشتركة (`layout.tsx`).      |
+| **`app/store/(products)/[id]`** | **مسار ديناميكي**        | صفحة تفاصيل منتج واحد (`/store/123`).                                                 |
+| **`app/checkout`**              | **مسار صفحة الدفع**      | صفحة `checkout/page.tsx` لإكمال الطلب.                                                |
+| **`components`**                | **مكونات الواجهة (UI)**  | يحتوي على المكونات القابلة لإعادة الاستخدام مثل `ProductCard.tsx` و `Pagination.tsx`. |
+| **`contexts`**                  | **إدارة الحالة العامة**  | يحتوي على `CheckoutContext.tsx` لتخزين البيانات المشتركة بشكل مستمر.                  |
+| **`lib`**                       | **الأدوات المساعدة/API** | يحتوي على `api.ts` لكافة عمليات جلب البيانات من الـ API الخارجي.                      |
+| **`types`**                     | **تعريف الأنواع**        | يحتوي على تعريفات TypeScript مثل `products.ts` و `user.ts`.                           |
+
+---
+
+### 🔍 المكونات والخدمات الرئيسية
+
+| الملف                                     | النوع            | الوظيفة الأساسية                                                                     |
+| :---------------------------------------- | :--------------- | :----------------------------------------------------------------------------------- |
+| **`lib/api.ts`**                          | API Client       | جلب المنتجات والفئات. يدعم التصفية حسب `category` والترقيم عبر `limit` و `skip`.     |
+| **`contexts/CheckoutContext.tsx`**        | React Context    | إدارة حالة المنتج، الكمية، ومعلومات المستخدم، مع ميزة الاستمرارية في `localStorage`. |
+| **`components/lib/Pagination.tsx`**       | Client Component | عرض أزرار الترقيم وتحديث معامل `page` في الرابط.                                     |
+| **`components/products/ProductCard.tsx`** | Client Component | عرض بيانات المنتج وتوفير رابط تفاصيل المنتج الديناميكي.                              |
+
+---
+
+## 🔧 كيفية تشغيل المشروع محلياً
+
+1. **استنساخ المستودع (Clone the repository):**
+   ```bash
+   git clone [رابط المشروع هنا]
+   ```
